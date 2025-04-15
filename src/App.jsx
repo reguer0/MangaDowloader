@@ -12,12 +12,12 @@ function App() {
 
   const handleSearch = async () => {
     try {
-      const res1 = await fetch(`${BASE_URL}/api/manga/search?title=${title}`);
+      const res1 = await fetch(`${BASE_URL}api/manga/search?title=${title}`);
       const manga = await res1.json();
 
       if (!manga?.id) return alert('Manga no encontrado');
 
-      const res2 = await fetch(`${BASE_URL}/api/manga/${manga.id}/chapters?start=${start}&end=${end}`);
+      const res2 = await fetch(`${BASE_URL}api/manga/${manga.id}/chapters?start=${start}&end=${end}`);
       const chapterData = await res2.json();
 
       
@@ -45,7 +45,7 @@ setChaptersEN(uniqueENChapters);
 
   const handleDownloadChapter = async (chapterId, lang) => {
     try {
-      const response = await fetch(`${BASE_URL}/api/manga/${chapterId}/download?lang=${lang}`);     
+      const response = await fetch(`${BASE_URL}api/manga/${chapterId}/download?lang=${lang}`);     
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
   
@@ -62,7 +62,7 @@ setChaptersEN(uniqueENChapters);
   const handleDownloadAll = async (lang) => {
     try {
       chaptersES.forEach(async (chap) => {
-        const response = await fetch(`${BASE_URL}/api/manga/${chap.id}/downloadAll?lang=${lang}&start=${start}&end=${end}`);
+        const response = await fetch(`${BASE_URL}api/manga/${chap.id}/downloadAll?lang=${lang}&start=${start}&end=${end}`);
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
     
